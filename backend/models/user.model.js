@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    avatar: {
+      type: String,
+      default: "https://cdn.pfps.gg/pfps/2139-itadori.png",
+    },
   },
   { timestamps: true }
 );
