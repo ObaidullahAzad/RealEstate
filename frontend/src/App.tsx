@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
+import SecureRoute from "./components/secureRoute";
 
 export default function App() {
   return (
@@ -15,7 +16,9 @@ export default function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route element={<SecureRoute />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
