@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import SecureRoute from "./components/secureRoute";
+import CreateListing from "./pages/CreateListing";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route element={<SecureRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create-listing" element={<CreateListing />} />
         </Route>
       </Routes>
     </BrowserRouter>
