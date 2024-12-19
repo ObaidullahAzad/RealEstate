@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+interface Landlord {
+  username: string;
+  email: string;
+}
+
 export default function Contact({ listing }: any) {
-  const [landlord, setLandlord] = useState(null);
+  const [landlord, setLandlord] = useState<Landlord | null>(null);
   const [message, setMessage] = useState("");
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   };
 
@@ -12,7 +17,7 @@ export default function Contact({ listing }: any) {
     const fetchLandlord = async () => {
       try {
         const res = await fetch(`/api/user/${listing.userRef}`);
-        const data = await res.json();
+        const data: Landlord = await res.json();
         setLandlord(data);
         console.log(listing.userRef);
       } catch (error) {

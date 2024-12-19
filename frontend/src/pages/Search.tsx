@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ListingCard from "../components/ListingCard";
 
+interface Listing {
+  _id: string;
+  title: string;
+  price: number;
+}
+
 export default function Search() {
   const [sidebarData, setsidebarData] = useState({
     searchTerm: "",
@@ -13,16 +19,16 @@ export default function Search() {
     order: "desc",
   });
   const [loading, setLoading] = useState(false);
-  const [listing, setListing] = useState([]);
+  const [listing, setListing] = useState<Listing[]>([]);
   const [showmore, setShowmore] = useState(false);
   console.log(listing);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const searchTermFormUrl = urlParams.get("searchTerm");
     const typeUrl = urlParams.get("type");
-    const parkingUrl = urlParams.get("parking");
-    const furnishedUrl = urlParams.get("furnished");
-    const offerUrl = urlParams.get("offer");
+    const parkingUrl = urlParams.get("parking") == "true" ? true : false;
+    const furnishedUrl = urlParams.get("furnished") == "true" ? true : false;
+    const offerUrl = urlParams.get("offer") == "true" ? true : false;
     const sortUrl = urlParams.get("sort");
     const orderUrl = urlParams.get("order");
 
@@ -50,7 +56,7 @@ export default function Search() {
       setShowmore(false);
       const searchQuery = urlParams.toString();
       const res = await fetch(`/api/listing/get?${searchQuery}`);
-      const data = await res.json();
+      const data: Listing[] = await res.json();
       if (data.length > 9) {
         setShowmore(true);
       } else {
@@ -96,9 +102,9 @@ export default function Search() {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("searchTerm", sidebarData.searchTerm);
     urlParams.set("type", sidebarData.type);
-    urlParams.set("parking", sidebarData.parking);
-    urlParams.set("furnished", sidebarData.furnished);
-    urlParams.set("offer", sidebarData.offer);
+    urlParams.set("parking", sidebarData.parking.toString());
+    urlParams.set("furnished", sidebarData.furnished.toString());
+    urlParams.set("offer", sidebarData.offer.toString());
     urlParams.set("sort", sidebarData.sort);
     urlParams.set("order", sidebarData.order);
     const searchQuery = urlParams.toString();

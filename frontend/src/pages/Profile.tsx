@@ -20,15 +20,22 @@ import {
 } from "../redux/user/userSlice.ts";
 import { Link } from "react-router-dom";
 
+interface FormData {
+  avatar?: string; // Optional because it may not always be set
+  username?: string;
+  email?: string;
+  password?: string;
+}
+
 export default function Profile() {
   const { currentUser, loading, error } = useSelector(
     (state: any) => state.user
   );
-  const fileRef = useRef(null);
+  const fileRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState(undefined);
   const [imgPer, setImgPer] = useState(0);
   const [imgUploadError, setImgUploadError] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<FormData>({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showListingError, setShowListingError] = useState(false);
   const [userListings, setUserListing] = useState([]);
@@ -55,6 +62,7 @@ export default function Profile() {
       },
       (error: any) => {
         setImgUploadError(true);
+        console.log(error.message);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downlaodURL) => {
@@ -159,7 +167,7 @@ export default function Profile() {
           accept="image/*"
         />
         <img
-          onClick={() => fileRef.current.click()}
+          onClick={() => fileRef.current && fileRef.current.click()}
           src={formData.avatar || currentUser.avatar}
           alt="profile"
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"

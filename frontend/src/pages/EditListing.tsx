@@ -30,9 +30,11 @@ export default function EditListing() {
     furnished: false,
   });
 
-  const [imgUploadError, setImageUploadError] = useState(false);
+  const [imgUploadError, setImageUploadError] = useState<string | boolean>(
+    false
+  );
   const [upload, setUpload] = useState(false);
-  const [submitError, setSubmitError] = useState(false);
+  const [submitError, setSubmitError] = useState<string | boolean>(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -70,6 +72,7 @@ export default function EditListing() {
         .catch((err: any) => {
           setImageUploadError("Image upload failed (2 mb max) ");
           setUpload(false);
+          console.log(err);
         });
     } else {
       setImageUploadError("You can only upload 6 images per listing");
@@ -90,11 +93,9 @@ export default function EditListing() {
           console.log(`Upload is ${progress} % done`);
         },
         (error) => {
-          // This is the error callback
           reject(error);
         },
         () => {
-          // This is the success callback
           getDownloadURL(uploadTask.snapshot.ref)
             .then((downloadURL) => {
               resolve(downloadURL);

@@ -5,7 +5,7 @@ import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
-import SecureRoute from "./components/secureRoute";
+import SecureRoute from "./components/SecureRoute";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";

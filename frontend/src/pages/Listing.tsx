@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
-import { useSelector, UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   FaMapMarkerAlt,
   FaShare,
@@ -13,12 +13,27 @@ import {
   FaParking,
   FaChair,
 } from "react-icons/fa";
-import { current } from "@reduxjs/toolkit";
 import Contact from "../components/Contact";
+
+interface Listing {
+  name: string;
+  offer: boolean;
+  discountPrice: number;
+  regularPrice: number;
+  type: string;
+  address: string;
+  description: string;
+  bedrooms: number;
+  bathrooms: number;
+  parking: boolean;
+  furnished: boolean;
+  imageUrls: string[];
+  userRef: string;
+}
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
-  const [listing, setListing] = useState([]);
+  const [listing, setListing] = useState<Listing | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -46,7 +61,6 @@ export default function Listing() {
     };
     fetchListing();
   }, [params.listingId]);
-  console.log(listing.offer);
   return (
     <main>
       {loading && <p className="text-center my-7 text-2xl">Loading.......</p>}
@@ -89,8 +103,8 @@ export default function Listing() {
             <p className="text-2xl font-semibold">
               {listing.name} - ${""}
               {listing.offer
-                ? listing.discountPrice?.toLocaleString("en-US") || "N/A"
-                : listing.regularPrice?.toLocaleString("en-US") || "N/A"}
+                ? listing.discountPrice.toLocaleString("en-US") || "N/A"
+                : listing.regularPrice.toLocaleString("en-US") || "N/A"}
               {listing.type === "rent" && " / month"}
             </p>
             <p className="flex items-center mt-6 gap-2 text-slate-600">
@@ -103,7 +117,7 @@ export default function Listing() {
               </p>
               {listing.offer && (
                 <p className="bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
-                  ${+listing.regularPrice - +listing.discountPrice} off
+                  ${listing.regularPrice - listing.discountPrice} off
                 </p>
               )}
             </div>
