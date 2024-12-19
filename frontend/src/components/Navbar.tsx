@@ -5,22 +5,22 @@ import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const { currentUser } = useSelector((state: any) => state.user);
-  const [search, setsearch] = useState("");
+  const [searchTerm, setsearchTerm] = useState("");
   const navigate = useNavigate();
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set("search", search);
+    urlParams.set("searchTerm", searchTerm);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
 
-    console.log(search);
+    console.log(searchTerm);
   };
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchTermFormUrl = urlParams.get("search");
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFormUrl = urlParams.get("searchTerm");
     if (searchTermFormUrl) {
-      setsearch(searchTermFormUrl);
+      setsearchTerm(searchTermFormUrl);
     }
   }, [location.search]);
   return (
@@ -40,8 +40,8 @@ export default function Navbar() {
             className="bg-transparent focus:outline-none w-24 sm:w-64"
             type="text"
             placeholder="Search"
-            value={search}
-            onChange={(e) => setsearch(e.target.value)}
+            value={searchTerm}
+            onChange={(e) => setsearchTerm(e.target.value)}
           ></input>
           <button>
             <FaSearch className="text-slate-600" />
