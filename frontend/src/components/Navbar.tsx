@@ -24,7 +24,7 @@ export default function Navbar() {
     }
   }, [location.search]);
   return (
-    <div className="bg-slate-200 shadow-md ">
+    <div className="bg-opacity-50 shadow-md rounded-[50px] ">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
