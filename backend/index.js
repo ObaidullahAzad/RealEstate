@@ -20,7 +20,6 @@ mongoose
 const _dirname = path.resolve();
 const app = express();
 app.use(cookieParser());
-
 app.use(express.json());
 
 app.listen(process.env.PORT || 3000, () => {
