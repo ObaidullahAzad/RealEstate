@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { CgArrowDownO } from "react-icons/cg";
-import { FaSearch } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import AvatarCircles from "../components/Avartar";
-import RippleButton from "@/components/ui/ripple-button";
 export default function Home() {
   const [searchTerm, setsearchTerm] = useState("");
   console.log(searchTerm);
