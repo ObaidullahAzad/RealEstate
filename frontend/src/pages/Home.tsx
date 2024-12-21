@@ -3,6 +3,9 @@ import { CgArrowDownO } from "react-icons/cg";
 
 import { useNavigate } from "react-router-dom";
 import AvatarCircles from "../components/Avartar";
+import { RiInstagramFill } from "react-icons/ri";
+import ReviewCard from "@/components/ReviewCard";
+import { FaFacebook, FaReddit, FaTwitter } from "react-icons/fa";
 export default function Home() {
   const [searchTerm, setsearchTerm] = useState("");
   console.log(searchTerm);
@@ -137,6 +140,54 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="bg-gradient-to-r from-amber-50 to-cyan-100 ... pb-20  flex justify-center items-center h-96 sm:text-8xl text-center">
+        <h1>
+          See Other People Who Have<h1> Lived in Our Residence</h1>
+        </h1>
+      </div>
+      <div className="bg-gradient-to-r from-amber-50 to-cyan-100 ... flex justify-center gap-10 pb-20">
+        <ReviewCard />
+        <ReviewCard />
+        <ReviewCard />
+      </div>
+      <div className="bg-slate-900 text-white flex pb-[40px]">
+        <div className="p-10 ">
+          <h2 className="text-3xl pb-3">Contact Us</h2>
+          <p>Phone: 123-456-7890</p>
+          <p>Email:Estate@example.com</p>
+          <p className="w-[400px]">
+            Address:Nyaya Marg, Block C, Diplometic Enclave,
+            Chanakyapuri,Delhi,India 110021
+          </p>
+        </div>
+        <div className=" absolute right-0 p-10">
+          <h2 className=" text-3xl pb-3">Social Link</h2>
+          <a href="https://example.com" target="_blank">
+            <p className="flex flex-row text-xl items-center gap-2 hover:scale-110 cursor-pointer">
+              <RiInstagramFill />
+              Instagram
+            </p>
+          </a>
+          <a href="https://example.com" target="_blank">
+            <p className="flex flex-row text-xl items-center gap-2 hover:scale-110 cursor-pointer">
+              <FaFacebook />
+              Facebook
+            </p>
+          </a>
+          <a href="https://example.com" target="_blank">
+            <p className="flex flex-row text-xl items-center gap-2 hover:scale-110 cursor-pointer">
+              <FaTwitter />
+              Twitter
+            </p>
+          </a>
+          <a href="https://example.com" target="_blank">
+            <p className="flex flex-row text-xl items-center gap-2 hover:scale-110 cursor-pointer">
+              <FaReddit />
+              Reddit
+            </p>
+          </a>
         </div>
       </div>
     </div>

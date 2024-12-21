@@ -19,6 +19,7 @@ import {
   signOutUserSuccess,
 } from "../redux/user/userSlice.ts";
 import { Link } from "react-router-dom";
+import { ImBin } from "react-icons/im";
 
 interface FormData {
   avatar?: string; // Optional because it may not always be set
@@ -156,8 +157,10 @@ export default function Profile() {
     }
   };
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl font-semibold text-center my-7 ">Profile</h1>
+    <div className="p-3 bg-slate-100 rounded-2xl m-5 max-w-lg mx-auto">
+      <h1 className="text-3xl font-semibold text-center my-7 ">
+        Hello! {currentUser.username}
+      </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           onChange={(e: any) => setFile(e.target.files[0])}
@@ -206,12 +209,31 @@ export default function Profile() {
           className="border p-3 rounded-lg"
           onChange={handleChange}
         />
-        <button
-          disabled={loading}
-          className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
-        >
-          {loading ? "Loading....." : "Update"}
-        </button>
+        <div>
+          {" "}
+          <div className="flex justify-between mt-5">
+            <span
+              onClick={handleDeleteUser}
+              className="text-red-700 font-semibold flex items-center p-3 gap-2 rounded-3xl bg-red-100 cursor-pointer"
+            >
+              <ImBin />
+              Delete Account
+            </span>
+            <span
+              onClick={handleSignOut}
+              className="text-red-700 cursor-pointer"
+            >
+              Sign Out
+            </span>
+            <button
+              disabled={loading}
+              className="bg-slate-700 text-white font-semibold rounded-3xl p-3 uppercase hover:opacity-95 disabled:opacity-80"
+            >
+              {loading ? "Loading....." : "Update"}
+            </button>
+          </div>
+        </div>
+
         <Link
           className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
           to={"/create-listing"}
@@ -219,17 +241,7 @@ export default function Profile() {
           Create Listing
         </Link>
       </form>
-      <div className="flex justify-between mt-5">
-        <span
-          onClick={handleDeleteUser}
-          className="text-red-700 cursor-pointer"
-        >
-          Delete Account
-        </span>
-        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
-          Sign Out
-        </span>
-      </div>
+
       <p className="text-red-700 mt-5">{error ? error : ""}</p>
       <p className="text-green-700 mt-5">
         {updateSuccess ? "User Updated Successfully" : ""}
