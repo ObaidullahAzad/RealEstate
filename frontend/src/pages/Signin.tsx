@@ -7,6 +7,7 @@ import {
   signInFailue,
 } from "../redux/user/userSlice.ts";
 import OAuth from "../components/OAuth.tsx";
+import { toast } from "react-toastify";
 
 export default function Signin() {
   const [formData, setFormData] = useState({});
@@ -35,6 +36,7 @@ export default function Signin() {
         dispatch(signInFailue(data.message));
         return;
       }
+      toast.success("Signed In Successfully!");
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (error: any) {

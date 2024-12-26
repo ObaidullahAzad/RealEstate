@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth.tsx";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -27,9 +28,11 @@ export default function SignUp() {
       const data = await res.json();
       if (data.success === false) {
         setLoading(false);
+        toast.warning(data.message);
         setError(data.message);
         return;
       }
+      toast.success("You are signed up");
       setLoading(false);
       setError(null);
       navigate("/signin");
