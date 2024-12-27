@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
-import { Navigation } from "swiper/modules";
+import { Navigation, FreeMode, Thumbs } from "swiper/modules";
 import "swiper/css/bundle";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 import { useSelector } from "react-redux";
-import {
-  FaMapMarkerAlt,
-  FaShare,
-  FaBed,
-  FaBath,
-  FaParking,
-  FaChair,
-} from "react-icons/fa";
+import { FaMapMarkerAlt, FaShare } from "react-icons/fa";
 import Contact from "../components/Contact";
+import { IoBedOutline } from "react-icons/io5";
+import { PiBathtub } from "react-icons/pi";
+import { TbParkingCircle } from "react-icons/tb";
+import { RiSofaLine } from "react-icons/ri";
 
 interface Listing {
   name: string;
@@ -38,6 +39,7 @@ export default function Listing() {
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [contact, setContact] = useState(false);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
   const params = useParams();
   const { currentUser } = useSelector((state: any) => state.user);
   useEffect(() => {
@@ -68,96 +70,153 @@ export default function Listing() {
         <p className="text-center my-7 text-2xl">Something went wrong!</p>
       )}
       {listing && !loading && !error && (
-        <div>
-          <Swiper navigation>
-            {listing.imageUrls.map((url: any) => (
-              <SwiperSlide key={url}>
-                <div
-                  className="h-[500px]"
-                  style={{
-                    background: `url(${url}) center no-repeat`,
-                    backgroundSize: "cover",
-                  }}
-                ></div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer">
-            <FaShare
-              className="text-slate-500"
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                setCopied(true);
-                setTimeout(() => {
-                  setCopied(false);
-                }, 2000);
-              }}
-            />
-          </div>
-          {copied && (
-            <p className="fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2">
-              Link Copied!
-            </p>
-          )}
-          <div className="flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4">
-            <p className="text-2xl font-semibold">
-              {listing.name} - ${""}
-              {listing.offer
-                ? listing.discountPrice.toLocaleString("en-US") || "N/A"
-                : listing.regularPrice.toLocaleString("en-US") || "N/A"}
-              {listing.type === "rent" && " / month"}
-            </p>
-            <p className="flex items-center mt-6 gap-2 text-slate-600">
-              <FaMapMarkerAlt className="text-green-700" />
-              {listing.address}
-            </p>
-            <div className="flex gap-4">
-              <p className="bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
-                {listing.type === "rent" ? "For Rent" : "For Sale"}
-              </p>
-              {listing.offer && (
-                <p className="bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
-                  ${listing.regularPrice - listing.discountPrice} off
+        <div className="flex flex-col">
+          <div className="sm:flex">
+            <div className="bg-green-200 sm:w-[900px] m-3 sm:m-10  rounded-3xl shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+              <Swiper
+                navigation={true}
+                spaceBetween={10}
+                thumbs={{ swiper: thumbsSwiper }}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper2 rounded-3xl"
+              >
+                {listing.imageUrls.map((url: any) => (
+                  <SwiperSlide key={url}>
+                    <div
+                      className="h-[500px]"
+                      style={{
+                        background: `url(${url}) center no-repeat`,
+                        backgroundSize: "cover",
+                      }}
+                    ></div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {copied && (
+                <p className="top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2">
+                  Link Copied!
                 </p>
               )}
+              <div className=" top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer">
+                <FaShare
+                  className="text-slate-500"
+                  onClick={() => {
+                    navigator.clipboard.writeText(window.location.href);
+                    setCopied(true);
+                    setTimeout(() => {
+                      setCopied(false);
+                    }, 2000);
+                  }}
+                />
+              </div>
             </div>
-            <p className="text-slate-800">
-              <span className="font-semibold text-black">
+
+            <div className="flex bg-slate-200 flex-col mx-auto max-h-[550px] p-5 my-9 gap-4 rounded-3xl shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] ">
+              <p className="text-3xl  font-semibold p-4">{listing.name} -</p>
+              <p className="flex text-lg items-center gap-2 bg-slate-300 p-5 rounded-3xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                <FaMapMarkerAlt className="text-blue-500 text-xl" />
+                {listing.address}
+              </p>
+              <p className="text-2xl font-semibold bg-blue-50 p-5 rounded-3xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                ${" "}
+                {listing.offer
+                  ? listing.discountPrice.toLocaleString("en-US") || "N/A"
+                  : listing.regularPrice.toLocaleString("en-US") || "N/A"}
+                {listing.type === "rent" && (
+                  <span className="text-lg text-slate-700"> /month</span>
+                )}
+              </p>
+              <div className="flex gap-4">
+                <p className="bg-slate-800 w-full max-w-[200px] font-semibold text-white text-center p-3 m-4 rounded-xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                  {listing.type === "rent" ? "For Rent" : "For Sale"}
+                </p>
+                {listing.offer && (
+                  <p className="bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
+                    ${listing.regularPrice - listing.discountPrice} off
+                  </p>
+                )}
+              </div>
+              <ul className=" font-semibold text-xs sm:text-sm items-center gap-4 sm:gap-6 flex flex-wrap">
+                <li className="flex items-center gap-1 bg-blue-200 p-3 sm:p-4 flex-col whitespace-nowrap rounded-2xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] ">
+                  <IoBedOutline className="text-3xl" />
+                  {listing.bedrooms > 1
+                    ? `${listing.bedrooms} beds`
+                    : `${listing.bedrooms} bed`}
+                </li>
+                <li className="flex items-center gap-1 whitespace-nowrap p-3 bg-blue-200 sm:p-4 flex-col rounded-2xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                  <PiBathtub className="text-3xl" />
+                  {listing.bathrooms > 1
+                    ? `${listing.bathrooms} baths`
+                    : `${listing.bathrooms} bath`}
+                </li>
+                <li className="flex items-center gap-1 whitespace-nowrap p-3 bg-blue-200 sm:p-4 flex-col rounded-2xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                  <TbParkingCircle className="text-3xl" />
+                  {listing.parking ? "Parking Spot" : "No Parking"}
+                </li>
+                <li className="flex items-center gap-1 whitespace-nowrap p-3 bg-blue-200 sm:p-4 flex-col rounded-2xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+                  <RiSofaLine className="text-3xl" />
+                  {listing.furnished ? "Furnished" : "Not Furnished"}
+                </li>
+              </ul>
+              {currentUser &&
+                listing.userRef !== currentUser._id &&
+                !contact && (
+                  <button
+                    onClick={() => setContact(true)}
+                    className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+                  >
+                    Contact Landlord
+                  </button>
+                )}
+              {contact && <Contact listing={listing} />}
+            </div>
+          </div>
+          <div className="bg-blue-50 p-8 m-8 rounded-3xl shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
+            <p className="text-slate-800 p-5  sm:m-5 text-xl">
+              <span className="font-semibold sm:text-2xl text-black">
                 Description - {""}
               </span>
               {listing.description}
             </p>
-            <ul className=" text-green-900 font-semibold text-sm items-center gap-4 sm:gap-6 flex flex-wrap">
-              <li className="flex items-center gap-1 whitespace-nowrap">
-                <FaBed className="text-lg" />
-                {listing.bedrooms > 1
-                  ? `${listing.bedrooms} beds`
-                  : `${listing.bedrooms} bed`}
-              </li>
-              <li className="flex items-center gap-1 whitespace-nowrap">
-                <FaBath className="text-lg" />
-                {listing.bathrooms > 1
-                  ? `${listing.bathrooms} baths`
-                  : `${listing.bathrooms} bath`}
-              </li>
-              <li className="flex items-center gap-1 whitespace-nowrap">
-                <FaParking className="text-lg" />
-                {listing.parking ? "Parking Spot" : "No Parking"}
-              </li>
-              <li className="flex items-center gap-1 whitespace-nowrap">
-                <FaChair className="text-lg" />
-                {listing.furnished ? "Furnished" : "Not Furnished"}
-              </li>
-            </ul>
-            {currentUser && listing.userRef !== currentUser._id && !contact && (
-              <button
-                onClick={() => setContact(true)}
-                className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+            <div className="">
+              <Swiper
+                onSwiper={setThumbsSwiper}
+                spaceBetween={10}
+                freeMode={true}
+                watchSlidesProgress={true}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper"
+                breakpoints={{
+                  // Define breakpoints for responsive behavior
+                  390: {
+                    slidesPerView: 2, // For screens smaller than 640px
+                  },
+                  1024: {
+                    slidesPerView: 5, // For screens larger than or equal to 1024px
+                  },
+                }}
               >
-                Contact Landlord
-              </button>
-            )}
-            {contact && <Contact listing={listing} />}
+                {listing.imageUrls.map((url: any) => (
+                  <SwiperSlide key={url}>
+                    <div
+                      className="sm:h-[150px] h-[80px]  border sm:w-full bg-slate-200 rounded-3xl transition-opacity duration-300 "
+                      style={{
+                        background: `url(${url}) center no-repeat`,
+                        backgroundSize: "cover",
+                      }}
+                    ></div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <style>
+                {`
+                .mySwiper .swiper-slide-thumb-active div {
+                  opacity: 1 !important;
+                }
+              `}
+              </style>
+            </div>
           </div>
         </div>
       )}
