@@ -163,7 +163,7 @@ export default function CreateListing() {
           <input
             type="text"
             placeholder="Name"
-            className="border p-3 rounded-lg"
+            className="border p-4 rounded-3xl focus:outline-none focus:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] "
             id="name"
             maxLength={62}
             minLength={10}
@@ -173,7 +173,7 @@ export default function CreateListing() {
           />
           <textarea
             placeholder="Description"
-            className="border p-3 rounded-lg"
+            className="border p-4 rounded-3xl focus:outline-none focus:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] "
             id="description"
             required
             onChange={handleChange}
@@ -182,7 +182,7 @@ export default function CreateListing() {
           <input
             type="text"
             placeholder="Address"
-            className="border p-3 rounded-lg"
+            className="border p-4 rounded-3xl focus:outline-none focus:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] "
             id="address"
             maxLength={62}
             minLength={10}
@@ -195,7 +195,7 @@ export default function CreateListing() {
               <input
                 type="checkbox"
                 id="sale"
-                className="w-5"
+                className="w-5 "
                 onChange={handleChange}
                 checked={formData.type === "sale"}
               />
@@ -249,7 +249,7 @@ export default function CreateListing() {
                   min={1}
                   max={10}
                   required
-                  className="p-3 border border-gray-300 rounded-lg"
+                  className="p-3 border border-gray-300 rounded-3xl focus:outline-none focus:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] "
                   onChange={handleChange}
                   value={formData.bedrooms}
                 />
@@ -262,7 +262,7 @@ export default function CreateListing() {
                   min={1}
                   max={10}
                   required
-                  className="p-3 border border-gray-300 rounded-lg"
+                  className="p-3 border border-gray-300 rounded-3xl focus:outline-none focus:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] "
                   onChange={handleChange}
                   value={formData.bathrooms}
                 />
@@ -275,7 +275,7 @@ export default function CreateListing() {
                   min={1}
                   max={100000}
                   required
-                  className="p-3 border border-gray-300 rounded-lg"
+                  className="p-3 border border-gray-300 rounded-3xl focus:outline-none focus:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] "
                   onChange={handleChange}
                   value={formData.regularPrice}
                 />
@@ -294,7 +294,7 @@ export default function CreateListing() {
                     min={1}
                     max={100000}
                     required
-                    className="p-3 border border-gray-300 rounded-lg"
+                    className="p-3 border border-gray-300 rounded-3xl"
                     onChange={handleChange}
                     value={formData.discountPrice}
                   />
@@ -321,7 +321,7 @@ export default function CreateListing() {
               onChange={(e: any) => setFiles(e.target.files)}
               type="file"
               id="image"
-              className="border p-3 rounded-lg w-full"
+              className="border p-3 rounded-3xl w-full"
               accept="image/*"
               multiple
               required
@@ -345,12 +345,12 @@ export default function CreateListing() {
                 <img
                   src={url}
                   alt="listing image "
-                  className="w-20 h-20 object-contain rounded-lg"
+                  className="w-20 h-20 object-contain rounded-3xl"
                 />
                 <button
                   type="button"
                   onClick={() => handleRemoveImage(index)}
-                  className="p-3 text-red-700 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+                  className="p-3 text-red-700 rounded-3xl uppercase hover:opacity-95 disabled:opacity-80"
                 >
                   Delete
                 </button>
@@ -358,7 +358,7 @@ export default function CreateListing() {
             ))}
           <button
             disabled={loading || upload}
-            className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="p-3 bg-slate-950 text-white rounded-3xl hover:opacity-95 disabled:opacity-80 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]"
           >
             {loading ? "Creating..." : "Create Listing"}
           </button>
