@@ -6,6 +6,8 @@ import authRouter from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import listingRouter from "./routes/listing.route.js";
 import path from "path";
+import cors from "cors";
+
 dotenv.config();
 
 mongoose
@@ -21,7 +23,13 @@ const _dirname = path.resolve();
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
-
+app.use(
+  cors({
+    origin: "https://real-estate-sigma-taupe-49.vercel.app/", // Replace with your frontend's origin
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+    credentials: true, // Allow cookies and credentials
+  })
+);
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running on port 3000!!!!");
 });
