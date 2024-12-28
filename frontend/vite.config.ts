@@ -8,7 +8,9 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "https://realestate-o4z2.onrender.com",
+        changeOrigin: true,
         secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

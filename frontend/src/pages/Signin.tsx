@@ -29,8 +29,16 @@ export default function Signin() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include", // Add this
         body: JSON.stringify(formData),
       });
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error("Response status:", res.status);
+        console.error("Error details:", errorData);
+        dispatch(signInFailue(errorData.message || "An error occurred"));
+        return;
+      }
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailue(data.message));
