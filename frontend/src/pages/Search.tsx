@@ -131,6 +131,7 @@ export default function Search() {
             <label className="whitespace-nowrap font-semibold">
               Search Term:
             </label>
+
             <input
               type="text"
               id="searchTerm"
@@ -140,6 +141,7 @@ export default function Search() {
               onChange={handleChange}
             />
           </div>
+          <p className="text-xl">Filters</p>
           <div className="flex gap-2 flex-wrap items-center">
             <label>Type:</label>
             <div className="flex gap-2">

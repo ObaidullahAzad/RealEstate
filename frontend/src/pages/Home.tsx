@@ -48,15 +48,19 @@ export default function Home() {
     },
   ];
   return (
-    <div className="bg-gradient-to-r from-amber-50 to-cyan-100 ... h-screen">
-      <div className="flex justify-start items-center h-full ">
-        <h1 className="text-8xl font-bold text-slate-900 font-sans ml-8">
-          Find The Most Appropriate Residence For You To Live In
-          <button className="bg-white rounded-[50px]">
-            <CgArrowDownO className="" />
-          </button>
-        </h1>
-        <div className="bg-emerald-200 bg-opacity-60 w-[500px] h-[300px] rounded-3xl mr-4">
+    <div className="bg-blue-50  h-screen">
+      <div className="sm:flex justify-around items-center  sm:h-full ">
+        <div className="text-4xl sm:text-8xl flex flex-col font-semibold text-slate-900 font-sans ml-8">
+          <span className="mt-8 sm:mt-0">Find The Most</span>
+          <span>Appropriate Residence</span>
+          <span>
+            For You To Live In
+            <button className="bg-white ml-5 rounded-[50px]">
+              <CgArrowDownO className="" />
+            </button>
+          </span>
+        </div>
+        <div className="bg-cyan-400 mt-8 m-[70px] bg-opacity-25 backdrop-blur-lg w-[250px] h-[300px] rounded-3xl sm:mr-4 shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]">
           <div className="bg-white flex gap-3 p-3 opacity-100 rounded-3xl m-1">
             <img
               className="w-[20px] h-[25px] rounded-full"
@@ -72,19 +76,19 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-r from-amber-50 to-cyan-100 ...  flex justify-center p-10 ">
+      <div className="bg-blue-50  flex justify-center p-10 ">
         <form
           onSubmit={handleSubmit}
-          className=" flex border-2 border-black rounded-full "
+          className=" bg-white flex border rounded-3xl "
         >
           <input
-            className="w-[1000px] h-[100px] rounded-full "
+            className="sm:w-[1000px] w-[250px] sm:h-[100px] text-center text-2xl rounded-3xl focus:outline-none focus:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)] "
             type="text"
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setsearchTerm(e.target.value)}
           ></input>
-          <button className="bg-green-400 text-2xl p-3 font-semibold text-slate-100 rounded-full m-4">
+          <button className="bg-slate-950 sm:text-2xl hover:scale-105  p-3 font-normal text-slate-100 rounded-3xl m-4 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
             {/* <FaSearch className="text-slate-600" /> */}
             Search Property
           </button>
@@ -94,12 +98,12 @@ export default function Home() {
         className="bg-cover bg-center h-screen"
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
-        <div className="flex justify-start items-end h-full ">
-          <div className="flex flex-col mb-10 ">
-            <h1 className="text-8xl font-semibold text-slate-100 font-sans ml-8">
+        <div className="sm:flex   sm:justify-start sm:items-end h-full ">
+          <div className="flex flex-col ml-[70px] mb-10 text-7xl ">
+            <h1 className="sm:text-8xl mt-5 font-semibold text-slate-100 font-sans  sm:ml-8">
               We are Here
             </h1>
-            <h1 className="text-8xl font-semibold text-slate-100 font-sans ml-8">
+            <h1 className="sm:text-8xl font-semibold text-slate-100 font-sans sm:ml-8">
               for You
             </h1>
             <AvatarCircles
@@ -108,7 +112,7 @@ export default function Home() {
               avatarUrls={avatars}
             />
           </div>
-          <div className="text-slate-100  bg-opacity-60 w-[700px] h-[300px] rounded-3xl ml-24 scale-75 absolute right-0">
+          <div className="text-slate-100  bg-opacity-60 sm:w-[700px] h-[300px] rounded-3xl sm:ml-24 scale-75 sm:absolute right-0">
             <div className=" flex flex-row gap-9 ">
               <div className="flex flex-col items-center flex-auto">
                 <h1 className="font-semibold text-7xl">150+ </h1>
@@ -119,7 +123,7 @@ export default function Home() {
                 <h1 className="text-xl">Total Partners</h1>
               </div>
             </div>
-            <div className=" flex flex-row flex-wrap items-center justify-center gap-9 text-slate-100 text-xl mt-10 ">
+            <div className=" flex flex-row flex-wrap items-center justify-center sm:gap-9 text-slate-100 text-xl mt-10 ">
               <div className="bg-slate-500 bg-opacity-50 flex justify-center rounded-3xl m-5  pl-4 pr-4 scale-150 shadow-2xl hover:bg-slate-400 cursor-pointer  ">
                 Furniture
               </div>
@@ -142,27 +146,27 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-r from-amber-50 to-cyan-100 ... pb-20  flex justify-center items-center h-96 sm:text-8xl text-center">
+      <div className="bg-blue-50 pb-20  flex justify-center items-center h-96 text-4xl sm:text-8xl text-center">
         <h1>
           See Other People Who Have<h1> Lived in Our Residence</h1>
         </h1>
       </div>
-      <div className="bg-gradient-to-r from-amber-50 to-cyan-100 ... flex justify-center gap-10 pb-20">
+      <div className="bg-blue-50 sm:flex justify-center gap-10 pb-20">
         <ReviewCard />
         <ReviewCard />
         <ReviewCard />
       </div>
-      <div className="bg-slate-900 text-white flex pb-[40px]">
+      <div className="bg-slate-900 text-white sm:flex sm:h-[300px] h-screen">
         <div className="p-10 ">
           <h2 className="text-3xl pb-3">Contact Us</h2>
           <p>Phone: 123-456-7890</p>
           <p>Email:Estate@example.com</p>
-          <p className="w-[400px]">
+          <p className="sm:w-[400px]">
             Address:Nyaya Marg, Block C, Diplometic Enclave,
             Chanakyapuri,Delhi,India 110021
           </p>
         </div>
-        <div className=" absolute right-0 p-10">
+        <div className=" sm:absolute right-0 p-10">
           <h2 className=" text-3xl pb-3">Social Link</h2>
           <a href="https://example.com" target="_blank">
             <p className="flex flex-row text-xl items-center gap-2 hover:scale-110 cursor-pointer">
