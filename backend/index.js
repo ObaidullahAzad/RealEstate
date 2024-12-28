@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://real-estate-sigma-taupe-49.vercel.app/", // Replace with your frontend's origin
+    origin: "https://realestate-o4z2.onrender.com", // Replace with your frontend's origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
     credentials: true, // Allow cookies and credentials
   })
