@@ -22,14 +22,17 @@ export default function Signin() {
   };
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
     try {
       dispatch(signInStart());
+      console.log("Sending request to:", "/api/auth/signin");
+      console.log("Form data:", formData);
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Add this
+        credentials: "include",
         body: JSON.stringify(formData),
       });
       if (!res.ok) {
