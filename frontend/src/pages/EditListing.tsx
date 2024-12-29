@@ -41,7 +41,9 @@ export default function EditListing() {
     const fetchLisiting = async () => {
       const listingId = params.listingId;
       console.log(listingId);
-      const res = await fetch(`/api/listing/get/${listingId}`);
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/listing/get/${listingId}`
+      );
       const data = await res.json();
       if (data.success === false) {
         console.log(data.message);
@@ -151,13 +153,18 @@ export default function EditListing() {
         );
       setLoading(true);
       setSubmitError(false);
-      const res = await fetch(`/api/listing/update/${params.listingId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData, userRef: currentUser._id }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/listing/update/${
+          params.listingId
+        }`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...formData, userRef: currentUser._id }),
+        }
+      );
       const data = await res.json();
       setLoading(false);
       if (data.success === false) {
