@@ -29,7 +29,12 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: validuser._id }, process.env.JWT_SECRET);
     const { password: pass, ...rest } = validuser._doc;
     res
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("access_token", token, {
+        httpOnly: true,
+        secure: true, // Required for HTTPS
+        sameSite: "none", // For cross-origin requests
+        domain: "https://realestate-o4z2.onrender.com",
+      })
       .status(200)
       .json(rest);
   } catch (error) {
