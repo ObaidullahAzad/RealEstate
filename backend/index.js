@@ -32,7 +32,8 @@ app.use(
       "https://real-estate-sigma-taupe-49.vercel.app",
     ], // Replace with your frontend's origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
-    credentials: true, // Allow cookies and credentials
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow cookies and credentials
   })
 );
 app.listen(process.env.PORT || 3000, () => {

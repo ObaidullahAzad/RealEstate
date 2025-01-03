@@ -80,6 +80,7 @@ export default function Profile() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
+      console.log("Cookies:", document.cookie); //
       dispatch(updateUserStart());
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/api/user/update/${currentUser._id}`,
