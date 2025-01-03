@@ -111,6 +111,7 @@ export default function Profile() {
         `${import.meta.env.VITE_API_URL}/api/user/delete/${currentUser._id}`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
       const data = await res.json();
@@ -142,7 +143,8 @@ export default function Profile() {
     try {
       setShowListingError(false);
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/user/listing/${currentUser._id}`
+        `${import.meta.env.VITE_API_URL}/api/user/listing/${currentUser._id}`,
+        { credentials: "include" }
       );
       const data = await res.json();
       console.log(data);
