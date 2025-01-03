@@ -18,6 +18,7 @@ export const signup = async (req, res, next) => {
 export const signin = async (req, res, next) => {
   const { username, password } = req.body;
   try {
+    const token = jwt.sign({ id: validuser._id }, process.env.JWT_SECRET);
     const validuser = await User.findOne({ username });
     if (!validuser) {
       return next(errorHandler(404, "User not found"));
@@ -26,14 +27,13 @@ export const signin = async (req, res, next) => {
     if (!validPassword) {
       return next(errorHandler(401, "Incorrect Password"));
     }
-    const token = jwt.sign({ id: validuser._id }, process.env.JWT_SECRET);
+
     const { password: pass, ...rest } = validuser._doc;
     res
       .cookie("access_token", token, {
         httpOnly: true,
         secure: true, // Required for HTTPS
         sameSite: "none", // For cross-origin requests
-        domain: "https://realestate-o4z2.onrender.com",
       })
       .status(200)
       .json(rest);
