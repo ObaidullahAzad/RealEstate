@@ -72,7 +72,7 @@ Before running the application, make sure you have the following installed:
 ```bash
   npm run dev
 ```
-6.Go to frontend directory and start the server
+6.Go to frontend directory and start the client
 ```bash
   cd frontend
   npm run dev
