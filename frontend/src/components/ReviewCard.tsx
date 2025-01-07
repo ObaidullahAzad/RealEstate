@@ -1,8 +1,14 @@
 import { FaStar } from "react-icons/fa";
-
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
 export default function ReviewCard() {
   return (
-    <div className="bg-slate-200 w-[360px] h-[400px] mb-7   flex flex-col justify-start rounded-3xl shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]">
+    <div
+      data-aos="fade-right"
+      className="bg-slate-200 w-[360px] h-[400px] mb-7 ml-7 sm:ml-0  flex flex-col justify-start rounded-3xl shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]"
+    >
       <div className="flex ml-4 p-4 gap-3">
         <img
           className="border-4 border-slate-400 w-[45px] h-[50px] rounded-full"

@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 import { ImBin } from "react-icons/im";
 import { FaEdit, FaSignOutAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
+import PulseLoader from "react-spinners/PulseLoader";
 
 interface FormData {
   avatar?: string; // Optional because it may not always be set
@@ -253,7 +254,7 @@ export default function Profile() {
             <div className="flex justify-between mt-5">
               <span
                 onClick={handleDeleteUser}
-                className="text-red-700 font-semibold flex items-center p-3 gap-2 rounded-3xl bg-red-100 cursor-pointer"
+                className="text-red-700 font-semibold flex items-center p-3 gap-2 rounded-3xl bg-red-100 cursor-pointer shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] hover:shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]"
               >
                 <ImBin />
                 Delete Account
@@ -261,9 +262,9 @@ export default function Profile() {
 
               <button
                 disabled={loading}
-                className="bg-slate-700 text-white font-semibold rounded-3xl p-3 uppercase hover:opacity-95 disabled:opacity-80"
+                className="bg-slate-700 text-white font-semibold rounded-3xl p-3 uppercase hover:opacity-95 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]"
               >
-                {loading ? "Loading....." : "Update"}
+                {loading ? <PulseLoader size={10} /> : "Update"}
               </button>
             </div>
           </div>

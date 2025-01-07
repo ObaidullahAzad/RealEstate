@@ -6,6 +6,10 @@ import AvatarCircles from "../components/Avartar";
 import { RiInstagramFill } from "react-icons/ri";
 import ReviewCard from "@/components/ReviewCard";
 import { FaFacebook, FaReddit, FaTwitter } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
 export default function Home() {
   const [searchTerm, setsearchTerm] = useState("");
   console.log(searchTerm);
@@ -50,7 +54,10 @@ export default function Home() {
   return (
     <div className="bg-blue-50  h-screen">
       <div className="sm:flex justify-around items-center  sm:h-full ">
-        <div className="text-4xl sm:text-8xl flex flex-col font-semibold text-slate-900 font-sans ml-8">
+        <div
+          data-aos="fade-up"
+          className="text-4xl sm:text-8xl flex flex-col font-semibold text-slate-900 font-sans ml-8"
+        >
           <span className="mt-8 sm:mt-0">Find The Most</span>
           <span>Appropriate Residence</span>
           <span>
@@ -60,7 +67,10 @@ export default function Home() {
             </button>
           </span>
         </div>
-        <div className="bg-cyan-400 mt-8 m-[70px] bg-opacity-25 backdrop-blur-lg w-[250px] h-[300px] rounded-3xl sm:mr-4 shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]">
+        <div
+          data-aos="fade-up"
+          className="bg-cyan-400 mt-8 m-[70px] bg-opacity-25 backdrop-blur-lg w-[250px] h-[300px] rounded-3xl sm:mr-4 shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]"
+        >
           <div className="bg-white flex gap-3 p-3 opacity-100 rounded-3xl m-1">
             <img
               className="w-[20px] h-[25px] rounded-full"

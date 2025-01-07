@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, CSSProperties } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,7 +8,13 @@ import {
 } from "../redux/user/userSlice.ts";
 import OAuth from "../components/OAuth.tsx";
 import { toast } from "react-toastify";
+import PuffLoader from "react-spinners/PuffLoader";
 
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 export default function Signin() {
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state: any) => state.user);
@@ -87,9 +93,18 @@ export default function Signin() {
           ></input>
           <button
             disabled={loading}
-            className="bg-slate-700 text-white p-4 rounded-3xl font-medium hover:opacity-95 disabled:opacity-80"
+            className="bg-slate-700 text-white p-4 rounded-3xl font-medium hover:opacity-95 disabled:opacity-80 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]"
           >
-            {loading ? "Loading.." : "Login In"}
+            {loading ? (
+              <PuffLoader
+                cssOverride={override}
+                size={20}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            ) : (
+              "Login In"
+            )}
           </button>
         </form>
         <div className="flex gap-2 mt-5">
